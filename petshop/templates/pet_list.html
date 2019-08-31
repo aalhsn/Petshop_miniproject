@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} PetShopME Homepage {% endblock title %}
+{% block content %}
+<div class="row">
+	{% for pet in pets %}
+<div class="col-sm-4">
+	<div class="card">
+		<div class="card-body">
+			<div>
+			<img src="{{pet.image.url}}" class="img-fluid petimg-list">
+		</div>
+			<h5 class="card-title">Pet's name: {{pet.name}}</h5>
+			<p class="card-text">Price: {{pet.price}}KWD</p>
+			{% if pet.available == True %}
+				<p class="card-text">Status: Available</p>
+            {% endif %}
+			<p class="card-text text-muted">Pet's Owner: {{pet.owner}}</p>
+			<a href="{{pet.get_absolute_url}}" class="btn" style="background-color: #ff66b3; color: black;">Know me more!</a>
+
+		</div>
+	</div>
+</div>
+	{% endfor %}
+</div>
+
+{% endblock content %}

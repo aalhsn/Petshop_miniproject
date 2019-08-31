@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} {{pet.name}}'s Detail Page{% endblock title %}
+
+{% block content %}
+<div class="card text-center">
+  <div class="card-header" style="background-color: #e6b3b3 ; color: 000034;">
+    <span class="text-capitalize">{{pet.name}}</span>'s Details
+  </div>
+  <div>
+  <img src="{{pet.image.url}}" class="img-fluid">
+</div>
+  <div class="card-body">
+    <h5 class="card-title" style="color: 000034;">Name: <span class="text-capitalize">{{pet.name}}</span> |  Age: {{pet.age}}</h5>
+    <p class="card-text" style="color: 000034;">Price: {{pet.price}}KWD</p>
+    {% if pet.available == True %}
+      <p class="card-text">Status: Available</p>
+    {% endif %}
+      <p class="card-text text-muted">Pet's Owner: {{pet.owner}}</p>
+    {% if request.user == pet.owner %}
+    <a href="{% url 'pet-update' pet.id %}" class="btn" style="background-color: #ffd480; color: #000034;">Update</a>
+    <a href="{% url 'pet-delete' pet.id %}" class="btn" style="background-color:  #e6004c; color: white;">Delete</a>
+    {% endif %}
+  
+  </div>
+</div>
+{% endblock content %}
